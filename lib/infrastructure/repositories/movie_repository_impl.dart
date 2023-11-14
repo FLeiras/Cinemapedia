@@ -28,4 +28,9 @@ class MovieRepositoryImpl extends MovieRepository {
   Future<List<Movie>> getVoteAverage({int page = 1}) {
     return datasource.getVoteAverage(page: page);
   }
+
+  @override
+  Future<Movie> getMovieById(String id) {
+    return datasource.getMovieById(id);
+  }
 }
