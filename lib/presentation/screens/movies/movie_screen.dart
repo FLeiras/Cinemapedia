@@ -32,7 +32,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
     final Movie? movie = ref.watch(movieDetailsProvider)[widget.movieId];
 
     if (movie == null) {
-      const Scaffold(
+      return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(
             strokeWidth: 2,
@@ -46,7 +46,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
         physics: const ClampingScrollPhysics(),
         slivers: [
           _CustomSliverAppBar(
-            movie: movie!,
+            movie: movie,
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
@@ -184,7 +184,7 @@ class _ActorsByMovie extends ConsumerWidget {
 }
 
 class _CustomSliverAppBar extends StatelessWidget {
-  final Movie movie;
+  final Movie? movie;
 
   const _CustomSliverAppBar({
     required this.movie,
@@ -203,18 +203,11 @@ class _CustomSliverAppBar extends StatelessWidget {
           horizontal: 10,
           vertical: 5,
         ),
-        // title: Text(
-        //   movie.title,
-        //   style: const TextStyle(
-        //     fontSize: 20,
-        //   ),
-        //   textAlign: TextAlign.start,
-        // ),
         background: Stack(
           children: [
             SizedBox.expand(
               child: Image.network(
-                movie.posterPath,
+                movie!.posterPath,
                 fit: BoxFit.cover,
               ),
             ),
