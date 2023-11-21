@@ -34,7 +34,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/categories',
-              builder: (context, state) => const CategoriesView(),
+              builder: (context, state) => const PopularView(),
             )
           ],
         ),
